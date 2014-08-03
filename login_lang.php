@@ -19,7 +19,7 @@ class login_lang extends rcube_plugin
 
   function init()
   {    
-
+    $this->load_config();     
     $this->add_hook('template_object_loginform', array($this, 'add_login_lang'));    //program/include/rcmail_output_html.php
     $this->add_hook('login_after',array($this,'change_lang'));
   }
@@ -39,18 +39,20 @@ class login_lang extends rcube_plugin
   }
 
   public function add_login_lang($arg)
-  {    
+  {              
     $rcmail = rcube::get_instance();
-    $this->load_config();
 
     $list_lang = $rcmail->list_languages();
-    $user_lang = rcube::get_user_language();
-    $current = $user_lang? $user_lang : $rcmail->config->get('language');          
+    
+    
 
     $label = $rcmail->gettext('language');          
     $label = $rcmail->config->get('language_dropdown_label')? $rcmail->config->get('language_dropdown_label'):$label;
+
+    $user_lang = rcube::get_user_language();    
+    $current = $user_lang? $user_lang : $rcmail->config->get('language');          
     if(!$current)
-      $current = 'en_US';
+      $current = $rcmail->config->get('language_dropdown_selected');
 
     $select = new html_select(array('id'=>"_language",'name'=>'_language','style'=>'width:100%;padding:3px;'));
     $select->add(array_values($list_lang),array_keys($list_lang));        
