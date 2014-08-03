@@ -13,15 +13,20 @@
 class login_lang extends rcube_plugin
 {
   
-  public $task = 'login';  
+  public $task = 'login|logout';  
   public $noajax = true;  
   public $noframe = true;
 
   function init()
   {    
     $this->load_config();     
+    $this->add_hook('logout_after',array($this,'logout_set_session'));
     $this->add_hook('template_object_loginform', array($this, 'add_login_lang'));    //program/include/rcmail_output_html.php
     $this->add_hook('login_after',array($this,'change_lang'));
+  }
+  public function logout_set_session($arg){
+    $_SESSION['lang_selected'] = $_SESSION['language'];
+    return $arg;
   }
 
   public function change_lang ($attr){        
@@ -39,7 +44,7 @@ class login_lang extends rcube_plugin
   }
 
   public function add_login_lang($arg)
-  {              
+  {               
     $rcmail = rcube::get_instance();
 
     $list_lang = $rcmail->list_languages();
@@ -50,10 +55,9 @@ class login_lang extends rcube_plugin
     $label = $rcmail->config->get('language_dropdown_label')? $rcmail->config->get('language_dropdown_label'):$label;
 
     $user_lang = rcube::get_user_language();    
-    $current = $user_lang? $user_lang : $rcmail->config->get('language');          
-    if(!$current)
-      $current = $rcmail->config->get('language_dropdown_selected');
-
+    $current = isset($_SESSION['lang_selected']) ? $_SESSION['lang_selected'] : $rcmail->config->get('language');              
+    $current = $current? $current : $rcmail->config->get('language_dropdown_selected');
+    $current = $current? $current : 'en_US';
     $select = new html_select(array('id'=>"_language",'name'=>'_language','style'=>'width:100%;padding:3px;'));
     $select->add(array_values($list_lang),array_keys($list_lang));        
 
