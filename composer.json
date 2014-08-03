@@ -1,0 +1,31 @@
+{
+    "name": "hassansin/login_lang",
+    "type": "roundcube-plugin",
+    "description": "A Roundcube Plugin to add a language selector on the login screen.",
+    "keywords": ["customize","login","language","roundcube"],
+    "license": "GNU GPLv3+",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "Hassansin",
+            "email": "rezatxe@gmail.com",
+            "homepage":"https://github.com/hassansin",
+            "role": "Develovper"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://plugins.roundcube.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.1",
+        "roundcube/plugin-installer": ">=0.1.2"
+    },
+    "extra": {
+    "roundcube": {
+      "min-version": "1.0"
+    }
+  }
+}
