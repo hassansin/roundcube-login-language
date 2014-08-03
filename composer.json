@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": ">=5.2.1",
+        "php": "~5.2.1",
         "roundcube/plugin-installer": "~0.1.2"
     },
     "extra": {
