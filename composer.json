@@ -3,7 +3,7 @@
     "type": "roundcube-plugin",
     "description": "A Roundcube Plugin to add a language selector on the login screen.",
     "keywords": ["customize","login","language","roundcube"],
-    "license": "GNU GPLv3+",
+    "license": "MIT",
     "version": "1.0",
     "authors": [
         {
@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=5.2.1",
-        "roundcube/plugin-installer": ">=0.1.2"
+        "roundcube/plugin-installer": "~0.1.2"
     },
     "extra": {
     "roundcube": {
