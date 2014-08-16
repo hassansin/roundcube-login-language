@@ -57,6 +57,7 @@ class login_lang extends rcube_plugin
     $user_lang = rcube::get_user_language();    
     $current = isset($_SESSION['lang_selected']) ? $_SESSION['lang_selected'] : $rcmail->config->get('language');              
     $current = $current? $current : $rcmail->config->get('language_dropdown_selected');
+    $current = $current? $current : $user_lang;
     $current = $current? $current : 'en_US';
     $select = new html_select(array('id'=>"_language",'name'=>'_language','style'=>'width:100%;padding:3px;'));
     $select->add(array_values($list_lang),array_keys($list_lang));        
