@@ -48,7 +48,7 @@ class login_lang extends rcube_plugin
     $rcmail = rcube::get_instance();
 
     $list_lang = $rcmail->list_languages();
-    
+    asort($list_lang);
     
 
     $label = $rcmail->gettext('language');          
