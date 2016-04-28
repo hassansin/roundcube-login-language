@@ -59,7 +59,7 @@ class login_lang extends rcube_plugin
     $current = $current? $current : $rcmail->config->get('language_dropdown_selected');
     $current = $current? $current : $user_lang;
     $current = $current? $current : 'en_US';
-    $select = new html_select(array('id'=>"_language",'name'=>'_language','style'=>'width:103%;padding:3px;border-radius:5px;box-shadow: 0 0 5px 2px rgba(71, 135, 177, 0.9);'));
+    $select = new html_select(array('id'=>"_language",'name'=>'_language','style'=>'width:103%;padding:3px;border-radius:-1px;box-shadow: 0 0 5px 2px rgba(71, 135, 177, 0.9);')); // make same fields as larry
     $select->add(array_values($list_lang),array_keys($list_lang));        
 
     
