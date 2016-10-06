@@ -30,7 +30,7 @@ class login_lang extends rcube_plugin
   }
 
   public function change_lang ($attr){        
-    $user_lang = rcube::get_user_language();
+    $user_lang = rcube::get_instance()->get_user_language();
     $lang = isset($_POST['_language'])? rcube_utils::get_input_value('_language', rcube_utils::INPUT_POST) : ($user_lang? $user_lang : rcube::get_instance()->config->get('language'));          
     rcube::get_instance()->load_language($lang);      
     $db = rcube::get_instance()->get_dbh();
@@ -54,7 +54,7 @@ class login_lang extends rcube_plugin
     $label = $rcmail->gettext('language');          
     $label = $rcmail->config->get('language_dropdown_label')? $rcmail->config->get('language_dropdown_label'):$label;
 
-    $user_lang = rcube::get_user_language();    
+    $user_lang = rcube::get_instance()->get_user_language();
     $current = isset($_SESSION['lang_selected']) ? $_SESSION['lang_selected'] : $rcmail->config->get('language');              
     $current = $current? $current : $rcmail->config->get('language_dropdown_selected');
     $current = $current? $current : $user_lang;
